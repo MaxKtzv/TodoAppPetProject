@@ -7,6 +7,7 @@ from starlette import status
 
 from database import SessionLocal
 from models import User
+from services.breach_checker import password_breach_check
 
 from .auth import bcrypt_context, get_current_user
 
@@ -50,6 +51,13 @@ async def change_password(
     if user is None:
         raise HTTPException(status_code=401, detail="Authentication Failed")
 
+    breached_password = password_breach_check(change_password_request.password)
+    if breached_password:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Password found in a breach — try another.",
+        )
+
     user_model = db.query(User).filter(User.id == user.get("id")).first()
     if not bcrypt_context.verify(
         change_password_request.old_password, user_model.hashed_password
@@ -62,7 +70,7 @@ async def change_password(
     db.commit()
 
 
-@router.put("/phonenumber", status_code=status.HTTP_204_NO_CONTENT)
+@router.put("/phone_number", status_code=status.HTTP_204_NO_CONTENT)
 async def change_password(
     user: user_dependency,
     db: db_dependency,
