@@ -1,12 +1,12 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from starlette import status
 
 from database import SessionLocal
 from models import User
+from schemas import ChangePasswordRequest, UserResponse
 from services.breach_checker import password_breach_check
 
 from .auth import bcrypt_context, get_current_user
@@ -26,16 +26,7 @@ db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
 
 
-class ChangePasswordRequest(BaseModel):
-    old_password: str
-    new_password: str
-
-
-class ChangePhoneRequest(BaseModel):
-    phone_number: str
-
-
-@router.get("/", status_code=status.HTTP_200_OK)
+@router.get("/", status_code=status.HTTP_200_OK, response_model=UserResponse)
 async def get_user(user: user_dependency, db: db_dependency):
     if user is None:
         raise HTTPException(status_code=401, detail="Authentication Failed")
@@ -71,10 +62,10 @@ async def change_password(
 
 
 @router.put("/phone_number", status_code=status.HTTP_204_NO_CONTENT)
-async def change_password(
+async def change_phone_number(
     user: user_dependency,
     db: db_dependency,
-    phone_number: str,
+    phone_number: int,
 ):
     if user is None:
         raise HTTPException(status_code=401, detail="Authentication Failed")

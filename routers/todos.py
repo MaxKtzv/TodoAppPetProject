@@ -7,6 +7,7 @@ from starlette import status
 
 from database import SessionLocal
 from models import Todos
+from schemas import TodoRequest
 
 from .auth import get_current_user
 
@@ -23,13 +24,6 @@ def get_db():
 
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
-
-
-class TodoRequest(BaseModel):
-    title: str = Field(min_length=3)
-    description: str = Field(min_length=3, max_length=100)
-    priority: int = Field(ge=1, le=5)
-    completed: bool
 
 
 @router.get("/")

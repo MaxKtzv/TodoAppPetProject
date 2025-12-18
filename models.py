@@ -6,22 +6,22 @@ from database import Base
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
-    email = Column(String, unique=True)
-    username = Column(String, unique=True)
-    first_name = Column(String)
-    last_name = Column(String)
-    hashed_password = Column(String)
+    username = Column(String, unique=True, nullable=False)
+    hashed_password = Column(String, nullable=False)
+    email = Column(String, unique=True, nullable=True)
+    first_name = Column(String, nullable=True)
+    last_name = Column(String, nullable=True)
+    phone_number = Column(Integer, nullable=True)
     is_active = Column(Boolean, default=True)
-    role = Column(String)
-    phone_number = Column(String)
+    admin = Column(Boolean, default=False)
 
 
 class Todos(Base):
     __tablename__ = "todos"
 
     id = Column(Integer, primary_key=True)
-    title = Column(String)
-    description = Column(String)
-    priority = Column(Integer)
+    title = Column(String, nullable=False)
+    description = Column(String, nullable=True)
+    priority = Column(Integer, nullable=False)
     completed = Column(Boolean, default=False)
     owner_id = Column(Integer, ForeignKey("users.id"))
