@@ -1,33 +1,16 @@
-from typing import Annotated
+from fastapi import APIRouter, HTTPException, Path, status
 
-from fastapi import APIRouter, Depends, HTTPException, Path
-from sqlalchemy.orm import Session
-from starlette import status
-
-from database import SessionLocal
+from dependencies.database.db import db_dependency
+from dependencies.user import user_dependency
 from models import Todos
 
-from .auth import get_current_user
-
 router = APIRouter(prefix="/admin", tags=["admin"])
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-
-db_dependency = Annotated[Session, Depends(get_db)]
-user_dependency = Annotated[dict, Depends(get_current_user)]
 
 
 @router.get("/todo", status_code=status.HTTP_200_OK)
 async def read_todos(user: user_dependency, db: db_dependency):
     if not user.get("admin"):
-        raise HTTPException(status_code=401, detail="Authentication Failed")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
     return db.query(Todos).all()
 
 
@@ -35,10 +18,10 @@ async def read_todos(user: user_dependency, db: db_dependency):
 async def delete_todo(
     user: user_dependency, db: db_dependency, todo_id: int = Path(ge=1)
 ):
-    if not user.admin:
-        raise HTTPException(status_code=401, detail="Authentication Failed")
+    if not user.get("admin"):
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
     todo_model = db.query(Todos).filter(Todos.id == todo_id).first()
     if todo_model is None:
-        raise HTTPException(status_code=404, detail="Todo not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     db.delete(todo_model)
     db.commit()
