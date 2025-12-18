@@ -12,7 +12,7 @@ def request_api_data(query_char):
     except RequestException:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Unable to check password safety right now",
+            detail="Unable to check password safety right now. Please try again later.",
         )
     return response
 
@@ -29,4 +29,9 @@ def password_breach_check(password: str):
     sha1password = hashlib.sha1(password.encode("utf-8")).hexdigest().upper()
     first5_chars, rest = sha1password[:5], sha1password[5:]
     response = request_api_data(first5_chars)
-    return get_password_leaks_count(response, rest)
+    breached = get_password_leaks_count(response, rest)
+    if breached:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Password found in a breach — try another.",
+        )
