@@ -19,6 +19,9 @@ class UserResponse(BaseModel):
     phone_number: int | None
     admin: bool
 
+    class ConfigDic:
+        from_attributes = True
+
 
 class Token(BaseModel):
     access_token: str
@@ -29,7 +32,7 @@ class TodoRequest(BaseModel):
     title: str = Field(min_length=3)
     description: str | None = None
     priority: int = Field(ge=1, le=5)
-    completed: bool
+    complete: bool
 
 
 class TodoResponse(BaseModel):
@@ -37,7 +40,7 @@ class TodoResponse(BaseModel):
     title: str
     description: str | None
     priority: int
-    completed: bool
+    complete: bool
     owner_id: int
 
 

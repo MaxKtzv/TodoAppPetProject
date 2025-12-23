@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, Path, status
 
-from dependencies.database.db import db_dependency
-from dependencies.user import user_dependency
-from models import Todos
+from ..dependencies.database.db import db_dependency
+from ..dependencies.user import user_dependency
+from ..models import Todos
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 

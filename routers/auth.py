@@ -4,21 +4,23 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 
-from dependencies.database.db import db_dependency
-from dependencies.user import (
+from ..dependencies.database.db import db_dependency
+from ..dependencies.user import (
     authenticate_user,
     bcrypt_context,
     create_access_token,
 )
-from models import User
-from schemas import CreateUserRequest, Token
-from services.breach_checker import password_breach_check
+from ..models import User
+from ..schemas import CreateUserRequest, Token
+from ..services.breach_checker import password_breach_check
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
-async def create_user(db: db_dependency, create_user_request: CreateUserRequest):
+async def create_user(
+    db: db_dependency, create_user_request: CreateUserRequest
+):
     password_breach_check(create_user_request.password)
     create_user_model = User(
         username=create_user_request.username,

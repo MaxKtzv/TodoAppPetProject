@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException, status
 
-from dependencies.database.db import db_dependency
-from dependencies.user import bcrypt_context, user_dependency
-from models import User
-from schemas import ChangePasswordRequest, UserResponse
-from services.breach_checker import password_breach_check
+from ..dependencies.database.db import db_dependency
+from ..dependencies.user import bcrypt_context, user_dependency
+from ..models import User
+from ..schemas import ChangePasswordRequest, UserResponse
+from ..services.breach_checker import password_breach_check
 
 router = APIRouter(prefix="/user", tags=["user"])
 
