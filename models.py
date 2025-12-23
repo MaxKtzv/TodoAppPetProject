@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 
-from dependencies.database.database import Base
+from .dependencies.database.database import Base
 
 
 class User(Base):
@@ -23,5 +23,5 @@ class Todos(Base):
     title = Column(String, nullable=False)
     description = Column(String, nullable=True)
     priority = Column(Integer, nullable=False)
-    completed = Column(Boolean, default=False)
+    complete = Column(Boolean, default=False)
     owner_id = Column(Integer, ForeignKey("users.id"))

@@ -6,7 +6,7 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 
-from models import User
+from ..models import User
 
 SECRET_KEY = "1215121cf2f41c6ed13c1155f077afdfee976d58cb1c8cd4d19ba2a896954b51"
 ALGORITHM = "HS256"
@@ -27,9 +27,9 @@ def authenticate_user(username: str, password: str, db):
 
 
 def create_access_token(
-    username: str, user_id: int, admin: bool, expires_delta: timedelta
+    username: str, user_id: int, whether_admin: bool, expires_delta: timedelta
 ):
-    encode = {"sub": username, "id": user_id, "admin": admin}
+    encode = {"sub": username, "id": user_id, "admin": whether_admin}
     expires = datetime.now(timezone.utc) + expires_delta
     encode.update({"exp": expires})
     return jwt.encode(encode, SECRET_KEY, algorithm=ALGORITHM)

@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException, Path, status
 
-from dependencies.database.db import db_dependency
-from dependencies.user import user_dependency
-from models import Todos
-from schemas import TodoRequest, TodoResponse
-from services.todo_search import find_todo
+from ..dependencies.database.db import db_dependency
+from ..dependencies.user import user_dependency
+from ..models import Todos
+from ..schemas import TodoRequest, TodoResponse
+from ..services.todo_search import find_todo
 
 router = APIRouter()
 
@@ -13,10 +13,7 @@ router = APIRouter()
 def read_all(user: user_dependency, db: db_dependency):
     if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
-    todo_model = db.query(Todos).filter(Todos.owner_id == user.get("id")).all()
-    if not todo_model:
-        raise HTTPException(status_code=status.HTTP_204_NO_CONTENT)
-    return todo_model
+    return db.query(Todos).filter(Todos.owner_id == user.get("id")).all()
 
 
 @router.get(
@@ -56,7 +53,7 @@ async def update_todo(
     todo_model.title = todo_request.title
     todo_model.description = todo_request.description
     todo_model.priority = todo_request.priority
-    todo_model.completed = todo_request.completed
+    todo_model.complete = todo_request.complete
 
     db.add(todo_model)
     db.commit()

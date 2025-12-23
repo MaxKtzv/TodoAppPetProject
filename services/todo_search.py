@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
 
-from models import Todos
+from ..models import Todos
 
 
 def find_todo(user, db, todo_id):
