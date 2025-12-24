@@ -9,6 +9,7 @@ from ..dependencies.database.db import db_dependency
 from ..dependencies.user import (
     authenticate_user,
     bcrypt_context,
+    check_username_and_email_uniqueness,
     create_access_token,
 )
 from ..models import User
@@ -33,9 +34,8 @@ def render_register_page(request: Request):
 
 ### Endpoints ###
 @router.post("/", status_code=status.HTTP_201_CREATED)
-async def create_user(
-    db: db_dependency, create_user_request: CreateUserRequest
-):
+async def create_user(db: db_dependency, create_user_request: CreateUserRequest):
+    check_username_and_email_uniqueness(create_user_request, db)
     password_breach_check(create_user_request.password)
     create_user_model = User(
         username=create_user_request.username,
@@ -59,7 +59,10 @@ async def login_for_access_token(
 ):
     user = authenticate_user(form_data.username, form_data.password, db)
     if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+        )
     token = create_access_token(
         user.username, user.id, user.admin, timedelta(minutes=20)
     )
