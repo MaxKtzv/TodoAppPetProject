@@ -1,8 +1,9 @@
 from datetime import timedelta
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.security import OAuth2PasswordRequestForm
+from fastapi.templating import Jinja2Templates
 
 from ..dependencies.database.db import db_dependency
 from ..dependencies.user import (
@@ -16,7 +17,21 @@ from ..services.breach_checker import password_breach_check
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
+templates = Jinja2Templates(directory="TodoAppPetProject/templates")
 
+
+### Pages ###
+@router.get("/login-page")
+def render_login_page(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+
+@router.get("/register-page")
+def render_register_page(request: Request):
+    return templates.TemplateResponse("register.html", {"request": request})
+
+
+### Endpoints ###
 @router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_user(
     db: db_dependency, create_user_request: CreateUserRequest

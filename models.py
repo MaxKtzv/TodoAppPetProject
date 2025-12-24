@@ -13,7 +13,7 @@ class User(Base):
     last_name = Column(String, nullable=True)
     phone_number = Column(Integer, nullable=True)
     is_active = Column(Boolean, default=True)
-    admin = Column(Boolean, default=False)
+    admin = Column(Boolean, default=False, nullable=False)
 
 
 class Todos(Base):
