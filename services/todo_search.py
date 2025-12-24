@@ -5,7 +5,10 @@ from ..models import Todos
 
 def find_todo(user, db, todo_id):
     if user is None:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+        )
 
     todo_model = (
         db.query(Todos)

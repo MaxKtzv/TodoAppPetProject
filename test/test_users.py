@@ -17,7 +17,7 @@ def test_return_user(test_user):
     assert response.json()["first_name"] == "Test"
     assert response.json()["last_name"] == "User"
     assert response.json()["admin"]
-    assert response.json()["phone_number"] == 1234567890
+    assert response.json()["phone_number"] == "+1 (123) 456-7890"
 
 
 def test_change_password_success(test_user):
@@ -40,9 +40,9 @@ def test_change_password_invalid_old_password(test_user):
         },
     )
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
-    assert response.json() == {"detail": "Unauthorized"}
+    assert response.json() == {"detail": "Could not validate credentials"}
 
 
 def test_change_phone_number_success(test_user):
-    response = client.put("/user/phone_number?phone_number=1111111111")
+    response = client.put("/user/phone_number?phone_number=%2B1%20(800)%20895-3601")
     assert response.status_code == status.HTTP_204_NO_CONTENT

@@ -76,7 +76,7 @@ def test_user():
         last_name="User",
         hashed_password=bcrypt_context.hash("testpassword"),
         admin=True,
-        phone_number=1234567890,
+        phone_number="+1 (123) 456-7890",
     )
     db = TestingSessionLocal()
     db.add(user)

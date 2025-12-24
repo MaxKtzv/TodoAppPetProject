@@ -17,6 +17,27 @@ oauth2_bearer = OAuth2PasswordBearer(tokenUrl="auth/token")
 token_dependency = Annotated[str, Depends(oauth2_bearer)]
 
 
+def check_username_and_email_uniqueness(create_user_request, db):
+    existing_username = (
+        db.query(User).filter(User.username == create_user_request.username).first()
+    )
+    if existing_username:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Username already taken",
+        )
+
+    if create_user_request.email:
+        existing_email = (
+            db.query(User).filter(User.email == create_user_request.email).first()
+        )
+        if existing_email:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Email already registered",
+            )
+
+
 def authenticate_user(username: str, password: str, db):
     user = db.query(User).filter(User.username == username).first()
     if not user:

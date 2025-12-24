@@ -11,7 +11,7 @@ class User(Base):
     email = Column(String, unique=True, nullable=True)
     first_name = Column(String, nullable=True)
     last_name = Column(String, nullable=True)
-    phone_number = Column(Integer, nullable=True)
+    phone_number = Column(String, nullable=True)
     is_active = Column(Boolean, default=True)
     admin = Column(Boolean, default=False, nullable=False)
 
