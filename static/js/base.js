@@ -7,6 +7,7 @@ if (todoForm) {
         const form = event.target;
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
+        var url = window.location.pathname;
 
         const payload = {
             title: data.title,
@@ -26,7 +27,7 @@ if (todoForm) {
             });
 
             if (response.ok) {
-                form.reset(); // Clear the form
+                window.location.href = '/todos/todo-page'; // Redirect to the todo page
             } else {
                 // Handle error
                 const errorData = await response.json();

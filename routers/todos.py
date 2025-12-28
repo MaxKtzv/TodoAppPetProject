@@ -1,40 +1,43 @@
-from fastapi import APIRouter, HTTPException, Path, Request, status
-from fastapi.templating import Jinja2Templates
+from fastapi import APIRouter, Path, Request, status
 
-from ..dependencies.database.db import db_dependency
-from ..dependencies.todo import check_and_render
-from ..dependencies.user import user_dependency
-from ..models import Todos
-from ..schemas import TodoRequest, TodoResponse
-from ..services.todo_search import find_todo
-
-templates = Jinja2Templates(directory="TodoAppPetProject/templates")
+from ..dependencies.current_user import (
+    user_dependency,
+)
+from ..dependencies.database.db import (
+    todo_endpoint_dependency,
+    todo_page_dependency,
+)
+from ..schemas.todos import TodoRequest, TodoResponse
 
 router = APIRouter(prefix="/todos", tags=["todos"])
 
 
 ### Pages ###
 @router.get("/todo-page")
-async def render_todos_page(request: Request, db: db_dependency):
-    return await check_and_render(request, db, todo_id=None, html="todo.html")
+async def get_todos_page(request: Request, service: todo_page_dependency):
+    return await service.get_page(request)
 
 
 @router.get("/add-todo-page")
-async def render_todo_page(request: Request):
-    return await check_and_render(request, db=None, todo_id=None, html="add-todo.html")
+async def add_todos_page(request: Request, service: todo_page_dependency):
+    return await service.add_page(request)
 
 
 @router.get("/edit-todo-page/{todo_id}", status_code=status.HTTP_200_OK)
-async def render_edit_todo_page(request: Request, todo_id: int, db: db_dependency):
-    return await check_and_render(request, db, todo_id, html="edit-todo.html")
+async def edit_todos_page(
+    request: Request,
+    service: todo_page_dependency,
+    todo_id: int = Path(ge=1),
+):
+    return await service.edit_page(request, todo_id)
 
 
 ### Endpoints ###
-@router.get("/", status_code=status.HTTP_200_OK, response_model=list[TodoResponse])
-def read_all(user: user_dependency, db: db_dependency):
-    if user is None:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
-    return db.query(Todos).filter(Todos.owner_id == user.get("id")).all()
+@router.get(
+    "/", status_code=status.HTTP_200_OK, response_model=list[TodoResponse]
+)
+def read_all(user: user_dependency, service: todo_endpoint_dependency):
+    return service.get_all(user)
 
 
 @router.get(
@@ -42,54 +45,37 @@ def read_all(user: user_dependency, db: db_dependency):
     status_code=status.HTTP_200_OK,
     response_model=TodoResponse,
 )
-async def read_todo(
+def read_one(
     user: user_dependency,
-    db: db_dependency,
+    service: todo_endpoint_dependency,
     todo_id: int = Path(ge=1),
 ):
-    return find_todo(user, db, todo_id)
+    return service.get_by_id(user, todo_id)
 
 
 @router.post("/todo", status_code=status.HTTP_201_CREATED)
-async def create_todo(
-    user: user_dependency, db: db_dependency, todo_request: TodoRequest
+def create_todo(
+    user: user_dependency,
+    request: TodoRequest,
+    service: todo_endpoint_dependency,
 ):
-    if user is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-        )
-    todo_model = Todos(**todo_request.model_dump(), owner_id=user.get("id"))
-
-    db.add(todo_model)
-    db.commit()
+    service.create(user, request)
 
 
 @router.put("/todo/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def update_todo(
+def update_todo(
     user: user_dependency,
-    db: db_dependency,
-    todo_request: TodoRequest,
+    request: TodoRequest,
+    service: todo_endpoint_dependency,
     todo_id: int = Path(ge=1),
 ):
-    todo_model = find_todo(user, db, todo_id)
-
-    todo_model.title = todo_request.title
-    todo_model.description = todo_request.description
-    todo_model.priority = todo_request.priority
-    todo_model.complete = todo_request.complete
-
-    db.add(todo_model)
-    db.commit()
+    service.update(user, todo_id, request)
 
 
 @router.delete("/todo/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_todo(
+def delete_todo(
     user: user_dependency,
-    db: db_dependency,
+    service: todo_endpoint_dependency,
     todo_id: int = Path(ge=1),
 ):
-    todo_model = find_todo(user, db, todo_id)
-
-    db.delete(todo_model)
-    db.commit()
+    service.delete(user, todo_id)

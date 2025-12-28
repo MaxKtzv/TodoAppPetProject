@@ -25,7 +25,7 @@
                 <tr class="pointer">
                     <td>{{loop.index}}</td>
                     <td>{{todo.title}}</td>
-                    <td class="description-cell">{{todo.description}}</td>
+                    <td class="description-cell">{{todo.description if todo.description != None else ""}}</td>
                     <td>{{todo.priority}}</td>
                     <td>
                         <button onclick="window.location.href='edit-todo-page/{{todo.id}}'" type="button"
@@ -38,7 +38,7 @@
                 <tr class="pointer alert alert-success">
                     <td>{{loop.index}}</td>
                     <td class="strike-through-td">{{todo.title}}</td>
-                    <td class="description-cell">{{todo.description}}</td>
+                    <td class="description-cell">{{todo.description if todo.description != None else ""}}</td>
                     <td>{{todo.priority}}</td>
                     <td>
                         <button onclick="window.location.href='edit-todo-page/{{todo.id}}'" type="button"
