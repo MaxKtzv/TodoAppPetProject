@@ -8,12 +8,12 @@
         <div class="card-body">
             <form id="editTodoForm">
                 <div class="form-group">
-                    <label>Title <span class="text-danger">*</label>
+                    <label>Title <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="title" value="{{todo.title}}" required>
                 </div>
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" name="description" rows="3">{{todo.description}}</textarea>
+                    <textarea class="form-control" name="description" rows="3">{{todo.description if todo.description != None else ""}}</textarea>
                 </div>
                 <div class="form-group">
                     <label>Priority</label>

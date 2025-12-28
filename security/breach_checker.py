@@ -12,7 +12,9 @@ def request_api_data(query_char):
     except RequestException:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Unable to check password safety right now. Please try again later.",
+            detail=
+                "Unable to check password safety right now."
+                "Please try again later.",
         )
     return response
 

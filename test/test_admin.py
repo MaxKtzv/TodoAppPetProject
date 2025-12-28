@@ -1,6 +1,6 @@
 from fastapi import status
 
-from ..models import Todos
+from ..models.todos import Todos
 from .utils import (
     TestingSessionLocal,
     client,

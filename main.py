@@ -1,9 +1,8 @@
-from fastapi import FastAPI, Request, status
+from fastapi import FastAPI, status
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
-from .dependencies.database.database import engine
-from .models import Base
+from .dependencies.database.database import Base, engine
 from .routers import admin, auth, todos, users
 
 app = FastAPI()
@@ -16,7 +15,7 @@ app.mount(
 
 
 @app.get("/")
-async def home(request: Request):
+async def home():
     return RedirectResponse(
         url="/todos/todo-page", status_code=status.HTTP_302_FOUND
     )

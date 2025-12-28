@@ -1,6 +1,6 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, Integer, String
 
-from .dependencies.database.database import Base
+from ..dependencies.database.database import Base
 
 
 class User(Base):
@@ -14,14 +14,3 @@ class User(Base):
     phone_number = Column(String, nullable=True)
     is_active = Column(Boolean, default=True)
     admin = Column(Boolean, default=False, nullable=False)
-
-
-class Todos(Base):
-    __tablename__ = "todos"
-
-    id = Column(Integer, primary_key=True)
-    title = Column(String, nullable=False)
-    description = Column(String, nullable=True)
-    priority = Column(Integer, nullable=False)
-    complete = Column(Boolean, default=False)
-    owner_id = Column(Integer, ForeignKey("users.id"))

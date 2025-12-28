@@ -5,11 +5,13 @@ from fastapi.testclient import TestClient
 from sqlalchemy import StaticPool, create_engine, text
 from sqlalchemy.orm import sessionmaker
 
+from ..dependencies.current_user import get_current_user
 from ..dependencies.database.database import Base
 from ..dependencies.database.db import get_db
-from ..dependencies.user import bcrypt_context, get_current_user
 from ..main import app
-from ..models import Todos, User
+from ..models.todos import Todos
+from ..models.users import User
+from ..security.token import bcrypt_context
 
 SQLITE_FILE_PATH = Path(__file__).resolve().with_name("testdb.db")
 SQLALCHEMY_DATABASE_URL = f"sqlite:///{SQLITE_FILE_PATH.as_posix()}"
@@ -20,7 +22,9 @@ engine = create_engine(
 )
 
 
-TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+TestingSessionLocal = sessionmaker(
+    autocommit=False, autoflush=False, bind=engine
+)
 
 Base.metadata.create_all(bind=engine)
 

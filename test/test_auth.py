@@ -4,13 +4,9 @@ import pytest
 from fastapi import HTTPException, status
 from jose import jwt
 
-from ..dependencies.user import (
-    ALGORITHM,
-    SECRET_KEY,
-    authenticate_user,
-    create_access_token,
-    get_current_user,
-)
+from ..dependencies.current_user import get_current_user
+from ..security.token import ALGORITHM, SECRET_KEY, create_access_token
+from ..services.auth.auth_services import AuthServices
 from .utils import (
     TestingSessionLocal,
     test_user,
@@ -19,14 +15,21 @@ from .utils import (
 
 def test_authenticate_user(test_user):
     db = TestingSessionLocal()
-    authenticated_user = authenticate_user(test_user.username, "testpassword", db)
+    auth_services = AuthServices(db)
+    authenticated_user = auth_services.authenticate_user(
+        test_user.username, "testpassword"
+    )
     assert authenticated_user is not None
     assert authenticated_user.username == test_user.username
 
-    non_existent_user = authenticate_user("Wrong_user_name", "testpassword", db)
+    non_existent_user = auth_services.authenticate_user(
+        "Wrong_user_name", "testpassword"
+    )
     assert non_existent_user is False
 
-    wrong_password = authenticate_user(test_user.username, "wrong_password", db)
+    wrong_password = auth_services.authenticate_user(
+        test_user.username, "wrong_password"
+    )
     assert wrong_password is False
 
 
@@ -35,7 +38,9 @@ def test_create_access_token():
     user_id = 1
     whether_admin = False
     expires_delta = timedelta(days=1)
-    token = create_access_token(username, user_id, whether_admin, expires_delta)
+    token = create_access_token(
+        username, user_id, whether_admin, expires_delta
+    )
     decoded_token = jwt.decode(
         token,
         SECRET_KEY,
