@@ -15,14 +15,24 @@ app.mount(
 
 
 @app.get("/")
-async def home():
+async def home() -> RedirectResponse:
+    """Redirect the user to the todo page.
+
+    Returns:
+        RedirectResponse: An object redirecting to the todo-page.
+    """
     return RedirectResponse(
         url="/todos/todo-page", status_code=status.HTTP_302_FOUND
     )
 
 
 @app.get("/healthcheck")
-async def healthcheck():
+async def healthcheck() -> dict:
+    """Provide a health check endpoint to verify service availability.
+
+    Returns:
+        dict: The service status message.
+    """
     return {"status": "OK"}
 
 

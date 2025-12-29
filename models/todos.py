@@ -4,6 +4,8 @@ from ..dependencies.database.database import Base
 
 
 class Todos(Base):
+    """SQLAlchemy model for representing a todo in the database."""
+
     __tablename__ = "todos"
 
     id = Column(Integer, primary_key=True)

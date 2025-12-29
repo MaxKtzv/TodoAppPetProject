@@ -4,6 +4,8 @@ from ..dependencies.database.database import Base
 
 
 class User(Base):
+    """SQLAlchemy model for representing a user in the database."""
+
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
     username = Column(String, unique=True, nullable=False)
