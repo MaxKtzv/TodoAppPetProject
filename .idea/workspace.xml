@@ -5,44 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35977b6b-b935-468a-9f9c-1c0ef899ee48" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/todos.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/todos.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/token.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/security/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/security/token.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/admin/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/admin/admin_services.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth/auth_services.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/redirection.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/todos/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/todos/page_services.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/users/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/security/constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/todos/backend_services.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alembic/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/current_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/current_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/database/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/database/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dependencies/database/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/database/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/todo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/current_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/todos.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/todos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/routers/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/routers/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/todos.py" beforeDir="false" afterPath="$PROJECT_DIR$/routers/todos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/routers/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/breach_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/security/breach_checker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/todo_search.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/edit-todo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/edit-todo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/todo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/todo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/todos.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/todos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/token.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security/breach_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/security/breach_checker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security/token.py" beforeDir="false" afterPath="$PROJECT_DIR$/security/token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/admin/admin_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/admin/admin_services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/auth/auth_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth/auth_services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/redirection.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/redirection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/todos/endpoint_services.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/todos/page_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/todos/frontend_services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/users/user_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/users/user_services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test_todos.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_todos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,33 +81,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;update/refactor&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Users/Standard/PycharmProjects/TodoAppPetProject/static&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "documentation",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "D:/Users/Standard/PycharmProjects/TodoAppPetProject/static",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Users\Standard\PycharmProjects\TodoAppPetProject\static" />
@@ -168,6 +165,11 @@
       <workItem from="1766750050082" duration="1809000" />
       <workItem from="1766808465251" duration="39492000" />
       <workItem from="1766901705676" duration="6356000" />
+      <workItem from="1766989092726" duration="18382000" />
+      <workItem from="1767015341336" duration="746000" />
+      <workItem from="1767016409916" duration="302000" />
+      <workItem from="1767017594517" duration="284000" />
+      <workItem from="1767018586738" duration="11159000" />
     </task>
     <servers />
   </component>
