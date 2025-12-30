@@ -6,11 +6,13 @@ from fastapi import status
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
-from ..models.todos import Todos
-from .conftest import TestingSessionLocal
+from models.todos import Todos
+from test.conftest import TestingSessionLocal
 
 
-def test_read_all_authenticated(client: TestClient, test_todo: Generator) -> None:
+def test_read_all_authenticated(
+    client: TestClient, test_todo: Generator
+) -> None:
     """Test retrieval of all todos for an authenticated user.
 
     Args:
@@ -188,7 +190,9 @@ def test_delete_todo(
     assert model is None
 
 
-def test_delete_todo_not_found(client: TestClient, test_todo: Generator) -> None:
+def test_delete_todo_not_found(
+    client: TestClient, test_todo: Generator
+) -> None:
     """Test deletion of a non-existent todo.
 
     Args:

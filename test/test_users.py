@@ -29,7 +29,9 @@ def test_return_user(client: TestClient, test_user: Generator) -> None:
     assert response.json()["phone_number"] == "+1 (123) 456-7890"
 
 
-def test_change_profile_success(client: TestClient, test_user: Generator) -> None:
+def test_change_profile_success(
+    client: TestClient, test_user: Generator
+) -> None:
     """Test successful change of a user's profile information.
 
     Args:

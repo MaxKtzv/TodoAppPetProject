@@ -2,15 +2,17 @@ from fastapi import FastAPI, status
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
-from .dependencies.database.database import Base, engine
-from .routers import admin, auth, todos, users
+from dependencies.database.database import Base, engine
+from routers import admin, auth, todos, users
 
 app = FastAPI()
 
 Base.metadata.create_all(bind=engine)
 
 app.mount(
-    "/static", StaticFiles(directory="TodoAppPetProject/static"), name="static"
+    "/static",
+    StaticFiles(directory="static"),
+    name="static",
 )
 
 

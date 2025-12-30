@@ -6,12 +6,12 @@ from fastapi import APIRouter, Depends, Request, status
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.templating import Jinja2Templates
 
-from ..dependencies.database.db import auth_service_dependency
-from ..schemas.users import CreateUserRequest
+from dependencies.database.db import auth_service_dependency
+from schemas.users import CreateUserRequest
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
-templates = Jinja2Templates(directory="TodoAppPetProject/templates")
+templates = Jinja2Templates(directory="templates")
 
 
 ### Pages ###

@@ -2,7 +2,7 @@ from datetime import datetime, timedelta, timezone
 
 from jose import jwt
 
-from .constants import ALGORITHM, SECRET_KEY
+from security.constants import ALGORITHM, SECRET_KEY
 
 
 def create_access_token(

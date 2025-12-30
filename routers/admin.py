@@ -2,9 +2,9 @@
 
 from fastapi import APIRouter, Path, status
 
-from ..dependencies.current_user import user_dependency
-from ..dependencies.database.db import admin_service_dependency
-from ..schemas.todos import TodoResponse
+from dependencies.current_user import user_dependency
+from dependencies.database.db import admin_service_dependency
+from schemas.todos import TodoResponse
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 

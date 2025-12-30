@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 
-from ..dependencies.database.database import Base
+from dependencies.database.database import Base
 
 
 class Todos(Base):
