@@ -2,14 +2,14 @@
 
 from fastapi import APIRouter, Path, Request, status
 
-from ..dependencies.current_user import (
+from dependencies.current_user import (
     user_dependency,
 )
-from ..dependencies.database.db import (
+from dependencies.database.db import (
     todo_endpoint_dependency,
     todo_page_dependency,
 )
-from ..schemas.todos import TodoRequest, TodoResponse
+from schemas.todos import TodoRequest, TodoResponse
 
 router = APIRouter(prefix="/todos", tags=["todos"])
 

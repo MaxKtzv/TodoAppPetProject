@@ -4,9 +4,9 @@ from fastapi import Request
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 
-from ...dependencies.current_user import get_current_user
-from ...models.todos import Todos
-from ...services.redirection import redirect_to_login
+from dependencies.current_user import get_current_user
+from models.todos import Todos
+from services.redirection import redirect_to_login
 
 
 class TodoPageService:
@@ -24,7 +24,7 @@ class TodoPageService:
 
         self.db = db
         self.templates = Jinja2Templates(
-            directory="TodoAppPetProject/templates"
+            directory="templates"
         )
 
     async def get_page(self, request: Request):

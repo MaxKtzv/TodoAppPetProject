@@ -3,8 +3,8 @@
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
-from ...models.todos import Todos
-from ...schemas.todos import TodoRequest
+from models.todos import Todos
+from schemas.todos import TodoRequest
 
 
 class TodoService:
@@ -30,7 +30,9 @@ class TodoService:
         Raises:
             HTTPException: If user authentication fails.
         """
-        return self.db.query(Todos).filter(Todos.owner_id == user.get("id")).all()
+        return (
+            self.db.query(Todos).filter(Todos.owner_id == user.get("id")).all()
+        )
 
     def get_by_id(self, user: dict, todo_id: int):
         """Retrieve a todo by ID for the authenticated user.

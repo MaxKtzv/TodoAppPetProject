@@ -6,8 +6,8 @@ from fastapi import status
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
-from ..models.todos import Todos
-from .conftest import TestingSessionLocal
+from models.todos import Todos
+from test.conftest import TestingSessionLocal
 
 
 def test_admin_read_all_authenticated(

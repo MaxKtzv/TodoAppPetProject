@@ -7,12 +7,12 @@ from fastapi import HTTPException, status
 from jose import jwt
 from sqlalchemy.orm import Session
 
-from ..dependencies.current_user import get_current_user
-from ..models.users import User
-from ..security.constants import ALGORITHM, SECRET_KEY
-from ..security.token import create_access_token
-from ..services.auth.auth_services import AuthServices
-from .conftest import TestingSessionLocal
+from dependencies.current_user import get_current_user
+from models.users import User
+from security.constants import ALGORITHM, SECRET_KEY
+from security.token import create_access_token
+from services.auth.auth_services import AuthServices
+from test.conftest import TestingSessionLocal
 
 
 def test_authenticate_user(test_user: User) -> None:
@@ -61,7 +61,9 @@ def test_create_access_token() -> None:
     user_id = 1
     whether_admin = False
     expires_delta = timedelta(days=1)
-    token: str = create_access_token(username, user_id, whether_admin, expires_delta)
+    token: str = create_access_token(
+        username, user_id, whether_admin, expires_delta
+    )
     decoded_token: dict = jwt.decode(
         token,
         SECRET_KEY,

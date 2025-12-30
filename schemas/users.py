@@ -4,7 +4,7 @@ import re
 
 from pydantic import Field, field_validator
 
-from ..schemas.base import Base
+from schemas.base import Base
 
 
 class BaseUserRequest(Base):

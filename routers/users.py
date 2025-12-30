@@ -2,9 +2,9 @@
 
 from fastapi import APIRouter, status
 
-from ..dependencies.current_user import user_dependency
-from ..dependencies.database.db import user_service_dependency
-from ..schemas.users import UpdateUserRequest, UserResponse
+from dependencies.current_user import user_dependency
+from dependencies.database.db import user_service_dependency
+from schemas.users import UpdateUserRequest, UserResponse
 
 router = APIRouter(prefix="/user", tags=["user"])
 

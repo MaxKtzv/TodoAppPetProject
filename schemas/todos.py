@@ -2,7 +2,7 @@
 
 from pydantic import Field
 
-from ..schemas.base import Base
+from schemas.base import Base
 
 
 class TodoRequest(Base):

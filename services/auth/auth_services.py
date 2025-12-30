@@ -4,11 +4,11 @@ from fastapi import HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
-from ...models.users import User
-from ...schemas.users import CreateUserRequest
-from ...security.breach_checker import password_breach_check
-from ...security.constants import bcrypt_context
-from ...security.token import create_access_token
+from models.users import User
+from schemas.users import CreateUserRequest
+from security.breach_checker import password_breach_check
+from security.constants import bcrypt_context
+from security.token import create_access_token
 
 
 class AuthServices:
@@ -23,7 +23,9 @@ class AuthServices:
         """Initialize the AuthServices class."""
         self.db = db
 
-    def check_username_and_email_uniqueness(self, request: CreateUserRequest) -> None:
+    def check_username_and_email_uniqueness(
+        self, request: CreateUserRequest
+    ) -> None:
         """Check the uniqueness of the username and email address.
 
         Args:
@@ -38,7 +40,9 @@ class AuthServices:
                 email is already registered.
         """
         existing_username = (
-            self.db.query(User).filter(User.username == request.username).first()
+            self.db.query(User)
+            .filter(User.username == request.username)
+            .first()
         )
         if existing_username:
             raise HTTPException(

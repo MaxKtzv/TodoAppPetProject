@@ -1,10 +1,10 @@
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
-from ...models.users import User
-from ...schemas.users import UpdateUserRequest
-from ...security.breach_checker import password_breach_check
-from ...security.constants import bcrypt_context
+from models.users import User
+from schemas.users import UpdateUserRequest
+from security.breach_checker import password_breach_check
+from security.constants import bcrypt_context
 
 
 class UserService:
@@ -48,7 +48,9 @@ class UserService:
                 does not match.
         """
         profile = self.get(user)
-        if not bcrypt_context.verify(request.old_password, profile.hashed_password):
+        if not bcrypt_context.verify(
+            request.old_password, profile.hashed_password
+        ):
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Could not validate credentials",
