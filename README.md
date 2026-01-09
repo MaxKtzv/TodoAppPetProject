@@ -56,6 +56,7 @@ The following learning resources (among others) were used to build the applicati
 | **🔄️ Automated Migrations**  | Database schema changes using *Alembic*.                                                                                                              |
 | **🔍 Data Validation**        | *Pydantic* models for strict data validation.                                                                                                         |
 | **🧪 Automated Testing**      | Unit and integration tests using *Pytest*                                                                                                             |
+| **⚙️ CI/CD Automation**      | Run automated tests with every push using *GitHub Actions*                                                                                                      |
 | **🐋 Container Deployment**   | Containerized using *Docker*, Ready-To-Go development and production environment.                                                                     |
 | **🎨 Modern Responsive UI**   | User-friendly GUI built with *Jinja2* templates, styled with *Bootstrap 5*, and enhanced with *jQuery*.                                               |
 | **📂 Structured API**         | Well-organized API endpoints with automatic documentation (*Swagger*/*Redoc*).                                                                        |
@@ -93,6 +94,7 @@ The following learning resources (among others) were used to build the applicati
 
 - **Package Manager:** [uv](https://docs.astral.sh/uv) 0.9.17
 - **Testing:** [Pytest](https://docs.pytest.org/) 9.0.2
+- **CI/CD:** [GitHub Actions](https://github.com/features/actions)
 - **Containerization:** [Docker](https://www.docker.com/)
 
 </details>
