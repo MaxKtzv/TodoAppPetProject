@@ -19,7 +19,7 @@ class TodoResponse(Base):
 
     id: int
     title: str
-    description: str
+    description: str | None = None
     priority: int
     complete: bool
     owner_id: int
